@@ -1,0 +1,42 @@
+/*
+Pisca um led, onde a velocidade das piscadas é 
+controlada por um potenciômetro.
+Por Tiago
+*/
+ 
+#define led 3
+#define pinPoten A0
+
+int valor = 0.0;
+int valor_mapeado;
+const int potenciometro = 0;
+const long intervalo = 2750;
+
+void setup() {
+	
+	pinMode(led, OUTPUT);
+	Serial.begin(9600);
+	
+}
+
+void loop() {
+	
+  float valor = led * 5.0 / 1023.0;
+  
+  valor = analogRead(potenciometro);
+  valor_mapeado = map(valor, 0, 1023, 0, 255);
+  analogWrite(led, valor);
+  
+  
+  
+  digitalWrite(led, HIGH);          // ligue o LED (ALTO é o nível de tensão)
+  delay(250);                      // espere um segundo
+  digitalWrite(led, LOW);           // desligue o LED, tornando a tensão BAIXA
+  delay(intervalo);                      // espere um segundo
+  
+  Serial.println(valor_mapeado);
+  
+  
+  
+  
+}
